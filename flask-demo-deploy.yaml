@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: flask-demo
+spec:
+  template:
+    metadata:
+      labels:
+        app: flask-demo
+    spec:
+      containers:
+      - image: yangmv/flask-demo:<BUILD_TAG>
+        imagePullPolicy: IfNotPresent
+        name: flask-demo
