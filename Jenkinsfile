@@ -1,4 +1,4 @@
-node('haimaxy-jnlp') {
+node() {
     stage('Clone') {
         echo "1.Clone 代码"
         git url: "https://github.com/yangmv/flask-demo.git"
@@ -14,7 +14,7 @@ node('haimaxy-jnlp') {
         sh "docker build -t yangmv/flask-demo:${build_tag} ."
     }
     stage('Push') {
-        echo "4.推送 Docker 镜像到仓库"
+        echo "4.推送 Docker 镜像到仓库"
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
             sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
             sh "docker push yangmv/flask-demo:${build_tag}"
@@ -26,25 +26,13 @@ node('haimaxy-jnlp') {
     }
     stage('Deploy') {
         echo "6.开始部署"
-        def userInput = input(
-            id: 'userInput',
-            message: 'Choose a deploy environment',
-            parameters: [
-                [
-                    $class: 'ChoiceParameterDefinition',
-                    choices: "Dev\nQA\nProd",
-                    name: 'Env'
-                ]
-            ]
-        )
-        echo "This is a deploy step to ${userInput}"
-        if (userInput == "Dev") {
-            // deploy dev stuff
-        } else if (userInput == "QA"){
-            // deploy qa stuff
-        } else {
-            // deploy prod stuff
-        }
-        sh "kubectl apply -f k8s.yaml"
+        //if (userInput == "Dev") {
+            //sh "kubectl apply -f flask-demo-deploy.yaml -n dev"
+        //} else if (userInput == "QA"){
+            //sh "kubectl apply -f flask-demo-deploy.yaml -n qa"
+        //} else {
+            //sh "kubectl apply -f flask-demo-deploy.yaml -n release"
+        //}
+        sh "kubectl apply -f flask-demo-deploy.yaml -n kube-dev"
     }
 }
