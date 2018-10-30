@@ -12,3 +12,18 @@ spec:
       - image: yangmv/flask-demo:<BUILD_TAG>
         imagePullPolicy: IfNotPresent
         name: flask-demo
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-demo
+  labels:
+    app: flask-demo
+spec:
+  selector:
+    app: flask-demo
+  type: NodePort
+  ports:
+  - port: 5000
+    targetPort: 5000
