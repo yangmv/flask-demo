@@ -1,33 +1,35 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-demo
 spec:
+  replicas: 2
   template:
     metadata:
       labels:
         app: flask-demo
     spec:
       containers:
-      - image: yangmv/flask-demo:<BUILD_TAG>
+      - name: flask-demo
+        image: yangmv/flask-demo:<BUILD_TAG>
         imagePullPolicy: IfNotPresent
-        name: flask-demo
         ports:
-        - containerPort: 5000
-          name: web
-          protocol: TCP
+        - name: http
+          containerPort: 5000
+
 
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: flask-demo
-  labels:
-    app: flask-demo
-spec:
-  selector:
-    app: flask-demo
-  type: NodePort
-  ports:
-  - port: 5000
-    targetPort: 5000
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: flask-demo
+#  labels:
+#    app: flask-demo
+#spec:
+#  selector:
+#    app: flask-demo
+#  type: NodePort
+#  ports:
+#  - name: http
+#    port: 5000
+#    targetPort: 5000
