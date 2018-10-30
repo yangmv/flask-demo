@@ -12,6 +12,10 @@ spec:
       - image: yangmv/flask-demo:<BUILD_TAG>
         imagePullPolicy: IfNotPresent
         name: flask-demo
+        ports:
+        - containerPort: 5000
+          name: web
+          protocol: TCP
 
 ---
 apiVersion: v1
