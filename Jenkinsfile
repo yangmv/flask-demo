@@ -16,7 +16,7 @@ node('haimaxy-jnlp') {
     stage('Push') {
         echo "4.推送 Docker 镜像到仓库"
         withCredentials([usernamePassword(credentialsId: 'dockerHubSZ', passwordVariable: 'dockerHubSZPassword', usernameVariable: 'dockerHubSZUser')]) {
-            sh "docker login -u ${dockerHubSZUser} -p ${dockerHubSZPassword}"
+            sh "docker login -u ${dockerHubSZUser} -p ${dockerHubSZPassword} ﻿https://harbor-k8s.shinezone.com"
             sh "docker push harbor-k8s.shinezone.com/ops/flask-demo:${build_tag}"
         }
     }
