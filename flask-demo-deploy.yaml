@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: flask-demo
 spec:
-  replicas: 2
   template:
     metadata:
       labels:
