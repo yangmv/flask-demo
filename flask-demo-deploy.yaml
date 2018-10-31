@@ -22,17 +22,17 @@ spec:
 
 
 ---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  name: flask-demo
-#  labels:
-#    app: flask-demo
-#spec:
-#  selector:
-#    app: flask-demo
-#  type: NodePort
-#  ports:
-#  - name: http
-#    port: 5000
-#    targetPort: 5000
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-demo
+  labels:
+    app: flask-demo
+spec:
+  selector:
+    app: flask-demo
+  type: NodePort
+  ports:
+  - name: http
+    port: 5000
+    targetPort: 5000
