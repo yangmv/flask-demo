@@ -1,4 +1,4 @@
-node() {
+node('haimaxy-jnlp') {
     stage('Clone') {
         echo "1.Clone 代码"
         git url: "https://github.com/yangmv/flask-demo.git"
@@ -11,13 +11,13 @@ node() {
     }
     stage('Build') {
         echo "3.构建打包 Docker 镜像"
-        sh "docker build -t yangmv/flask-demo:${build_tag} ."
+        sh "docker build -t ﻿harbor-k8s.shinezone.com/ops/flask-demo:${build_tag} ."
     }
     stage('Push') {
         echo "4.推送 Docker 镜像到仓库"
-        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
-            sh "docker push yangmv/flask-demo:${build_tag}"
+        withCredentials([usernamePassword(credentialsId: 'dockerHubSZ', passwordVariable: 'dockerHubSZPassword', usernameVariable: 'dockerHubSZUser')]) {
+            sh "docker login -u ${dockerHubSZUser} -p ${dockerHubSZPassword}"
+            sh "docker push harbor-k8s.shinezone.com/ops/flask-demo:${build_tag}"
         }
     }
     stage('YAML') {
