@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-demo
-        image: harbor-k8s.shinezone.com/ops/flask-demo:2059a52
+        image: harbor-k8s.shinezone.com/ops/flask-demo:<BUILD_TAG>
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
