@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: flask-demo
 spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-demo
   template:
     metadata:
       labels:
@@ -10,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-demo
-        image: ﻿harbor-k8s.shinezone.com/ops/flask-demo:<BUILD_TAG>
+        image: harbor-k8s.shinezone.com/ops/flask-demo:2059a52
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
