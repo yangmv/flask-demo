@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: flask-demo
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: flask-demo
@@ -19,7 +19,6 @@ spec:
         lifecycle:
           postStart:
             exec:
-              #command: ['/bin/sh', '-c', 'echo Test > /tmp/test.txt']
               command: ['/bin/sh', '-c', 'sed -i "s/s_hostname/$(hostname)/" /data1/www/templates/app.html']
 
         ports:
