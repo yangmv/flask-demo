@@ -19,8 +19,8 @@ spec:
         lifecycle:
           postStart:
             exec:
-              #command: ["/bin/sh", "-c", "echo Test > /tmp/test.txt"]
-              command: ['/bin/sed','-i "s/s_hostname/$(hostname)/"','/data1/www/templates/app.html']
+              command: ['/bin/sh', '-c', 'echo Test > /tmp/test.txt']
+              #command: ['/bin/sh','-c "sed -i s/s_hostname/$(hostname)/" /data1/www/templates/app.html']
 
         ports:
         - name: http
