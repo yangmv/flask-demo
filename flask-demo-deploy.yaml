@@ -37,6 +37,7 @@ spec:
   selector:
     app: flask-demo
   #type: NodePort
+  type: ClusterIP
   ports:
   - name: http
     port: 5000
