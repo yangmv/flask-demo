@@ -19,7 +19,7 @@ spec:
         lifecycle:
         postStart:
           exec:
-            command: ['/bin/sed','-i','"s/{{hostname}}/$(hostname)/" /data1/www/templates/app.html']
+            command: ['/bin/sed','-i','"s/s_hostname/$(hostname)/" /data1/www/templates/app.html']
         ports:
         - name: http
           containerPort: 5000
