@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: flask-demo
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: flask-demo
@@ -16,6 +16,10 @@ spec:
       - name: flask-demo
         image: harbor-k8s.shinezone.com/ops/flask-demo:<BUILD_TAG>
         imagePullPolicy: IfNotPresent
+        lifecycle:
+        postStart:
+          exec:
+            command: ['/bin/sed','-i','"s/{{hostname}}/$(hostname)/" /data1/www/templates/app.html']
         ports:
         - name: http
           containerPort: 5000
