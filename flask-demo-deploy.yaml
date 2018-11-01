@@ -36,7 +36,7 @@ metadata:
 spec:
   selector:
     app: flask-demo
-  type: NodePort
+  #type: NodePort
   ports:
   - name: http
     port: 5000
