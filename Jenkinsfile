@@ -21,8 +21,12 @@ node('haimaxy-jnlp') {
         }
     }
     stage('YAML') {
-        echo "5.修改YAML版本"
+        echo "5.YAML配置"
         sh "sed -i 's/<BUILD_TAG>/${build_tag}/' flask-demo-deploy.yaml"
+        sh "sed -i 's/<REP_NUM>/${replicas}/' flask-demo-deploy.yaml"
+        sh "sed -i 's/<PORT>/${port}/' flask-demo-deploy.yaml"
+        sh "sed -i 's/<PORT>/${port}/' flask-demo-ingress.yaml"
+        sh "sed -i 's/<DOMAIN>/${domain}/' flask-demo-ingress.yaml"
     }
     stage('Deploy') {
         echo "6.开始部署"
