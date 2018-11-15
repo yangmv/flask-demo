@@ -36,7 +36,7 @@ node('haimaxy-jnlp') {
         //} else {
             //sh "kubectl apply -f flask-demo-deploy.yaml -n release"
         //}
-        sh "kubectl apply -f flask-demo-deploy.yaml -n dev"
-        sh "kubectl apply -f flask-demo-ingress.yaml -n dev"
+        sh "kubectl apply -f flask-demo-deploy.yaml -n ${namespace}"
+        sh "kubectl apply -f flask-demo-ingress.yaml -n ${namespace}"
     }
 }
